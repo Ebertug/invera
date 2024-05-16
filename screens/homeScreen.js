@@ -72,10 +72,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'left', // Corrected alignItems
-    paddingHorizontal: 20, // Adjusted paddingHorizontal
+    alignItems: 'flex',
+    paddingHorizontal:20,
     backgroundColor: '#272829',
-    color:'#fff',
+  },
+  logoContainer: {
+    marginLeft:20,
+    alignItems: 'center',
+    top:-180,
+  },
+  logo: {
+    transform: [{ scale: 0.7 }],
   },
   input: {
     width: '100%',
@@ -90,27 +97,55 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#fff',
     borderRadius: 50,
-    backgroundColor:'#6A6D76',
-    color: '#000',
+    backgroundColor: '#6A6D76',
     height: 40,
-    width:150,
+    width: 100, 
     marginTop: 10,
+    justifyContent: 'center',
+    alignItems: 'left', 
+    
   },
-  buttonText:{
-    textAlign: 'left',
-    color:'#fff',
-    fontSize: 20, // Adjusted fontSize
-    marginTop: 5,
-    marginLeft: 16,
+  buttonText: {
+    textAlign:'center',
+    color: '#fff',
+    fontSize: 16,
+    padding:10,
+  },
+  textButtonContainer: {
+    alignSelf: 'left',
+    marginBottom: 10,
   },
   textButton: {
+    textAlign:'center',
     color: '#fff',
-    fontSize: 16, // Adjusted fontSize
+    fontSize: 16,
   },
-  Text: {
+  Text:{
     color:'#fff',
     fontSize:16,
   },
+  label: {
+    color: '#fff',
+    fontSize: 16,
+    marginBottom: 5,
+    alignSelf: 'flex-start',
+  },
+  buttonGoogle: {
+    borderRadius: 40,
+    height: 40,
+    width: 45,
+    marginTop: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  googleImage: {
+    width: 40,
+    height: 40,
+  },
+  Heading:{
+    color:'#fff',
+    fontSize:32, 
+  }
 });
 
 export default LoginScreen;

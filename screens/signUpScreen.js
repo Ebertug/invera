@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Text, StyleSheet, TouchableOpacity,ActivityIndicator, KeyboardAvoidingView } from 'react-native';
+import { View, TextInput, Text, StyleSheet, TouchableOpacity,ActivityIndicator, Image,KeyboardAvoidingView } from 'react-native';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { FIREBASE_AUTH } from '../FirebaseConfig';
 const LoginScreen = ({ navigation }) => {
@@ -9,9 +9,7 @@ const LoginScreen = ({ navigation }) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = () => {
-    navigation.navigate('Login');
-  };
+
   const signUp = async () => {
     setLoading(true);
     try{
@@ -27,7 +25,10 @@ const LoginScreen = ({ navigation }) => {
   }
   return (
     <View style={styles.container}>
-      
+      <KeyboardAvoidingView behavior='padding'>
+    <View style={styles.logoContainer}>
+        <Image source={require('../assets/logo.png')} style={styles.logo} />
+      </View>   
       <Text style={styles.Text}>Email</Text>
       <TextInput
         style={styles.input}
@@ -54,6 +55,7 @@ const LoginScreen = ({ navigation }) => {
         value={confirmPassword}
         secureTextEntry
       />
+      
 { loading ? (
         <ActivityIndicator size='large' color='#2BAF17' />
       ):(
@@ -63,6 +65,10 @@ const LoginScreen = ({ navigation }) => {
       </TouchableOpacity>
       </>
       )}
+      <TouchableOpacity title="Go Back" onPress={() => navigation.goBack() }  style={styles.button}> 
+        <Text style={styles.buttonText}>Go Back</Text> 
+      </TouchableOpacity>
+      </KeyboardAvoidingView>
     </View>
   );
 };
@@ -71,43 +77,77 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'left',
-    paddingHorizontal: 20,
+    alignItems: 'flex',
+    paddingHorizontal:20,
     backgroundColor: '#272829',
-    color:'#fff',
+  },
+  logoContainer: {
+    marginLeft:20,
+    alignItems: 'center',
+    top:-195,
+  },
+  logo: {
+    transform: [{ scale: 0.7 }],
   },
   input: {
-    width: '100%',
     marginBottom: 10,
     padding: 10,
     borderWidth: 1,
-    borderRadius:50,
+    borderRadius: 50,
     borderColor: '#fff',
     backgroundColor: '#6A6D76',
-    color: '#fff',
   },
   button: {
     borderWidth: 1,
     borderColor: '#fff',
     borderRadius: 50,
-    backgroundColor:'#6A6D76',
-    color: '#fff',
-    height: 40,
-    width:150,
+    backgroundColor: '#6A6D76',
     marginTop: 10,
     justifyContent: 'center',
-    alignItems: 'left',
+    alignItems: 'center', 
   },
-  buttonText:{
-    textAlign: 'left',
-    color:'#fff',
-    fontSize: 20, // Adjusted fontSize
-    marginLeft:16,
+  buttonText: {
+    textAlign:'center',
+    color: '#fff',
+    fontSize: 16,
+    padding:10,
   },
-  Text: {
+  textButtonContainer: {
+    alignSelf: 'left',
+    marginBottom: 10,
+  },
+  textButton: {
+    textAlign:'center',
+    color: '#fff',
+    fontSize: 16,
+  },
+  Text:{
     color:'#fff',
     fontSize:16,
   },
+  label: {
+    color: '#fff',
+    fontSize: 16,
+    marginBottom: 5,
+    alignSelf: 'flex-start',
+  },
+  buttonGoogle: {
+    borderRadius: 40,
+    height: 40,
+    width: 45,
+    marginTop: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  googleImage: {
+    width: 40,
+    height: 40,
+  },
+  Heading:{
+    color:'#fff',
+    fontSize:32, 
+  },
+
 });
 
 export default LoginScreen;

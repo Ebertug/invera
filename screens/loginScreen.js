@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, StyleSheet, TouchableOpacity, Text, ActivityIndicator, Image } from 'react-native';
+import { View, TextInput, StyleSheet, TouchableOpacity, Text, ActivityIndicator, Image, KeyboardAvoidingView } from 'react-native';
 import { FIREBASE_AUTH } from '../FirebaseConfig';
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
@@ -41,8 +41,10 @@ const LoginScreen = ({ navigation }) => {
     navigation.navigate('ResetPassword');
   };
 
-  return (
+  return ( 
+      
     <View style={styles.container}>
+      <KeyboardAvoidingView behavior='padding'>
       <View style={styles.logoContainer}>
         <Image source={require('../assets/logo.png')} style={styles.logo} />
       </View>
@@ -77,7 +79,9 @@ const LoginScreen = ({ navigation }) => {
           </TouchableOpacity>
         </>
       )}
+      </KeyboardAvoidingView>
     </View>
+    
   );
 };
 
@@ -85,16 +89,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 20,
+    alignItems: 'flex',
+    paddingHorizontal:20,
     backgroundColor: '#272829',
   },
   logoContainer: {
+    marginLeft:20,
     alignItems: 'center',
-    marginBottom: 20,
+    top:-195,
+  },
+  logo: {
+    transform: [{ scale: 0.7 }],
   },
   input: {
-    width: '100%',
     marginBottom: 10,
     padding: 10,
     borderWidth: 1,
@@ -107,24 +114,29 @@ const styles = StyleSheet.create({
     borderColor: '#fff',
     borderRadius: 50,
     backgroundColor: '#6A6D76',
-    height: 40,
-    width: '100%', // Use full width
     marginTop: 10,
     justifyContent: 'center',
-    alignItems: 'flex-start', // Align text to the left
-    paddingLeft: 20, // Add padding to the left for text alignment
+    alignItems: 'center', 
   },
   buttonText: {
+    textAlign:'center',
     color: '#fff',
     fontSize: 16,
+    padding:10,
   },
   textButtonContainer: {
-    alignSelf: 'flex-start',
+    alignSelf: 'left',
     marginBottom: 10,
+    width:130,
   },
   textButton: {
+    textAlign:'left',
     color: '#fff',
     fontSize: 16,
+  },
+  Text:{
+    color:'#fff',
+    fontSize:16,
   },
   label: {
     color: '#fff',
@@ -141,9 +153,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   googleImage: {
-    width: 20,
-    height: 20,
+    width: 40,
+    height: 40,
   },
+  Heading:{
+    color:'#fff',
+    fontSize:32, 
+  }
 });
 
 export default LoginScreen;
