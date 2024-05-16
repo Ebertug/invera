@@ -1,23 +1,20 @@
 import React, { useState } from 'react';
-import { View, TextInput, Text, StyleSheet, TouchableOpacity,ActivityIndicator, KeyboardAvoidingView } from 'react-native';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { View, TextInput, StyleSheet, TouchableOpacity, Text, ActivityIndicator } from 'react-native'; // Import Text from react-native
 import { FIREBASE_AUTH } from '../FirebaseConfig';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmEmail, setConfirmEmail] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const auth = FIREBASE_AUTH;
 
-  const handleLogin = () => {
-    navigation.navigate('Login');
-  };
-  const signUp = async () => {
+  const signIn = async () => {
     setLoading(true);
     try{
-      const response = await createUserWithEmailAndPassword(FIREBASE_AUTH,email,password);
+      const response = await signInWithEmailAndPassword(FIREBASE_AUTH,email,password);
       console.log(response);
-      alert('Check your emails!');
+      navigation.navigate('ResetPassword');
     } catch(error){
     console.log(error);
     alert('Sign in failed: '+error.message);
@@ -25,6 +22,15 @@ const LoginScreen = ({ navigation }) => {
       setLoading(false);
     }
   }
+
+
+  const handleSignUp = () => {
+    navigation.navigate('SignUp'); 
+  };
+  const handleResetPassword = () => {
+    navigation.navigate('ResetPassword'); 
+  };
+
   return (
     <View style={styles.container}>
       
@@ -34,12 +40,6 @@ const LoginScreen = ({ navigation }) => {
         onChangeText={setEmail}
         value={email}
       />
-      <Text style={styles.Text}>Confirm Email</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={setConfirmEmail}
-        value={confirmEmail}
-      />
       <Text style={styles.Text}>Password</Text>
       <TextInput
         style={styles.input}
@@ -47,18 +47,19 @@ const LoginScreen = ({ navigation }) => {
         value={password}
         secureTextEntry
       />
-      <Text style={styles.Text}>Confirm Password</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={setConfirmPassword}
-        value={confirmPassword}
-        secureTextEntry
-      />
-{ loading ? (
+      { loading ? (
         <ActivityIndicator size='large' color='#2BAF17' />
       ):(
       <>
-      <TouchableOpacity onPress={signUp} style={styles.button}>
+      <TouchableOpacity title='Forgot Password' onPress={handleResetPassword}>
+        <View>
+          <Text style={styles.textButton}>Forgot Password?</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity title="Login" onPress={signIn} style={styles.button}>
+        <Text style={styles.buttonText}>Login</Text>
+      </TouchableOpacity>
+      <TouchableOpacity title="Sign Up" onPress={handleSignUp} style={styles.button}>
         <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
       </>
@@ -71,8 +72,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'left',
-    paddingHorizontal: 20,
+    alignItems: 'left', // Corrected alignItems
+    paddingHorizontal: 20, // Adjusted paddingHorizontal
     backgroundColor: '#272829',
     color:'#fff',
   },
@@ -81,28 +82,30 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     padding: 10,
     borderWidth: 1,
-    borderRadius:50,
+    borderRadius: 50,
     borderColor: '#fff',
     backgroundColor: '#6A6D76',
-    color: '#fff',
   },
   button: {
     borderWidth: 1,
     borderColor: '#fff',
     borderRadius: 50,
     backgroundColor:'#6A6D76',
-    color: '#fff',
+    color: '#000',
     height: 40,
     width:150,
     marginTop: 10,
-    justifyContent: 'center',
-    alignItems: 'left',
   },
   buttonText:{
     textAlign: 'left',
     color:'#fff',
     fontSize: 20, // Adjusted fontSize
-    marginLeft:16,
+    marginTop: 5,
+    marginLeft: 16,
+  },
+  textButton: {
+    color: '#fff',
+    fontSize: 16, // Adjusted fontSize
   },
   Text: {
     color:'#fff',

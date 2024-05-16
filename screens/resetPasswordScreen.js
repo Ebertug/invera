@@ -1,24 +1,32 @@
+import { sendPasswordResetEmail } from 'firebase/auth';
 import React, { useState } from 'react';
-import { View, TextInput, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, TextInput, Text, StyleSheet, TouchableOpacity,Alert } from 'react-native';
+import { FIREBASE_AUTH } from '../FirebaseConfig';
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
 
-  const handleReset = () => {
-    navigation.navigate('SubmitReset'); 
-  };
-
+  const handleSendResetRequest = async () =>{
+    try{
+      if(!email){
+        alert('Please enter your email');
+      } await sendPasswordResetEmail(FIREBASE_AUTH, email);
+    alert('Password reset email sent','Password reset email sent to: '+email);
+    } catch(error){
+      console.error('Error sending password reset email',error);
+    }
+  }
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Reset Password</Text>
-      <Text>Email</Text>
+      <Text style={styles.Heading}>Reset Password</Text>
+      <Text style={styles.Text}>Email</Text>
       <TextInput
         style={styles.input}
         onChangeText={setEmail}
         value={email}
       />
-      <TouchableOpacity onPress={handleReset} style={styles.button}>
-        <Text style={styles.buttonText}>Send Code</Text>
+      <TouchableOpacity onPress={handleSendResetRequest} style={styles.button}>
+        <Text style={styles.buttonText}>Send Email</Text>
       </TouchableOpacity>
     </View>
   );
@@ -60,6 +68,15 @@ const styles = StyleSheet.create({
     color:'#fff',
     fontSize: 20, // Adjusted fontSize
     marginLeft:16,
+  },
+  Text: {
+    color:'#fff',
+    fontSize:16,
+  },
+  Heading:{
+    color:'#fff',
+    fontSize:32,
+    alignItems: 'center',
   },
 });
 
