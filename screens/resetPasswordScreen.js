@@ -3,42 +3,22 @@ import { View, TextInput, Text, StyleSheet, TouchableOpacity } from 'react-nativ
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    navigation.navigate('Login');
+  const handleReset = () => {
+    navigation.navigate('SubmitReset'); 
   };
 
   return (
     <View style={styles.container}>
+      <Text style={styles.heading}>Reset Password</Text>
       <Text>Email</Text>
       <TextInput
         style={styles.input}
         onChangeText={setEmail}
         value={email}
       />
-      <Text>Confirm Email</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={setEmail}
-        value={email}
-      />
-      <Text>Password</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={setPassword}
-        value={password}
-        secureTextEntry
-      />
-      <Text>Confirm Password</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={setPassword}
-        value={password}
-        secureTextEntry
-      />
-      <TouchableOpacity onPress={handleLogin} style={styles.button}>
-        <Text style={styles.buttonText}>Sign Up</Text>
+      <TouchableOpacity onPress={handleReset} style={styles.button}>
+        <Text style={styles.buttonText}>Send Code</Text>
       </TouchableOpacity>
     </View>
   );

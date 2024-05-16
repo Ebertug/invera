@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 const LoginScreen = ({ navigation }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [code, setCode] = useState('');
 
   const handleLogin = () => {
     navigation.navigate('Login');
@@ -11,34 +10,15 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text>Email</Text>
+      <Text style={styles.heading}>Submit Code</Text>
+      <Text>Code</Text>
       <TextInput
         style={styles.input}
-        onChangeText={setEmail}
-        value={email}
-      />
-      <Text>Confirm Email</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={setEmail}
-        value={email}
-      />
-      <Text>Password</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={setPassword}
-        value={password}
-        secureTextEntry
-      />
-      <Text>Confirm Password</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={setPassword}
-        value={password}
-        secureTextEntry
+        onChangeText={setCode}
+        value={code}
       />
       <TouchableOpacity onPress={handleLogin} style={styles.button}>
-        <Text style={styles.buttonText}>Sign Up</Text>
+        <Text style={styles.buttonText}>Submit Code</Text>
       </TouchableOpacity>
     </View>
   );
