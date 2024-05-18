@@ -13,7 +13,7 @@ const LoginScreen = ({ navigation }) => {
     try {
       const response = await signInWithEmailAndPassword(FIREBASE_AUTH, email, password);
       console.log(response);
-      navigation.navigate('ResetPassword');
+      navigation.navigate('Home');
     } catch (error) {
       console.log(error);
       alert('Sign in failed: ' + error.message);
@@ -26,7 +26,7 @@ const LoginScreen = ({ navigation }) => {
     try {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(FIREBASE_AUTH, provider);
-      navigation.navigate('ResetPassword');
+      navigation.navigate('Home');
     } catch (error) {
       console.error('Error during Google Sign-In:', error);
       alert('Google Sign-In failed: ' + error.message);
@@ -53,6 +53,7 @@ const LoginScreen = ({ navigation }) => {
         style={styles.input}
         onChangeText={setEmail}
         value={email}
+        
       />
       <Text style={styles.label}>Password</Text>
       <TextInput
@@ -108,6 +109,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderColor: '#fff',
     backgroundColor: '#6A6D76',
+    color:'#fff',
   },
   button: {
     borderWidth: 1,
@@ -159,7 +161,7 @@ const styles = StyleSheet.create({
   Heading:{
     color:'#fff',
     fontSize:32, 
-  }
+  },
 });
 
 export default LoginScreen;

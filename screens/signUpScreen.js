@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Text, StyleSheet, TouchableOpacity,ActivityIndicator, Image,KeyboardAvoidingView } from 'react-native';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { FIREBASE_AUTH } from '../FirebaseConfig';
-const LoginScreen = ({ navigation }) => {
+const signUpScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmEmail, setConfirmEmail] = useState('');
@@ -15,7 +15,6 @@ const LoginScreen = ({ navigation }) => {
     try{
       const response = await createUserWithEmailAndPassword(FIREBASE_AUTH,email,password);
       console.log(response);
-      alert('Check your emails!');
     } catch(error){
     console.log(error);
     alert('Sign in failed: '+error.message);
@@ -96,6 +95,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderColor: '#fff',
     backgroundColor: '#6A6D76',
+    color:'#fff',
   },
   button: {
     borderWidth: 1,
@@ -150,4 +150,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default LoginScreen;
+export default signUpScreen;

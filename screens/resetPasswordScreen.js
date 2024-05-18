@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Text, StyleSheet, TouchableOpacity, Image,KeyboardAvoidingView } from 'react-native';
 import { FIREBASE_AUTH } from '../FirebaseConfig';
 
-const LoginScreen = ({ navigation }) => {
+const resetPasswordScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
 
   const handleSendResetRequest = async () =>{
@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderColor: '#fff',
     backgroundColor: '#6A6D76',
+    color:'#fff',
   },
   button: {
     borderWidth: 1,
@@ -113,7 +114,7 @@ const styles = StyleSheet.create({
   Heading:{
     color:'#fff',
     fontSize:32, 
-  }
+  },
 });
 
-export default LoginScreen;
+export default resetPasswordScreen;
