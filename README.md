@@ -8,7 +8,6 @@ Invera, otel yönetim süreçlerini daha verimli, konforlu ve kullanıcı dostu 
 - **Müşteri Taleplerinin Anlık Takibi**: Müşteriler taleplerini anında iletebilir ve çalışanlar bu taleplere hızlıca erişerek müşteri memnuniyetini artırır.
 - **Dijital Oda Anahtarı**: Müşteriler, NFC teknolojisi ile fiziksel kart taşımaya gerek kalmadan odalarına giriş yapabilir.
 - **Etkinlik Katılımı ve Otel Haritası**: Otel içinde gerçekleştirilen etkinliklere katılım ve otel içi yön bulma desteği sunar.
-- **Veri Gizliliği ve Güvenlik**: KVKK standartlarına uygun olarak müşteri verilerini güvenli bir şekilde saklar.
 
 ## Proje Dosyaları
 
